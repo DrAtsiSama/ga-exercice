@@ -1,9 +1,13 @@
 name: Correction
 
 on:
+  # 1.2
+  # push:
+  #   branche:
+      # - dev
   push:
-    branche:
-      - dev
+    branches:
+     - '!staging'
 jobs: 
   build:
     runs-on: ubuntu-latest
