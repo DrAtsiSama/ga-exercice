@@ -9,9 +9,13 @@ on:
   # push:
   #   branches:
   #    - '!staging'
+  # 1.4
+  # push:
+  #   branches:
+  #     - 'feat/**'
   push:
     branches:
-      - 'feat/**'
+      - '**.ts'
 jobs: 
   build:
     runs-on: ubuntu-latest
