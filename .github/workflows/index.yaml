@@ -17,9 +17,13 @@ on:
   # push:
   #   branches:
   #     - '**.ts'
-  push:
-    paths:
-      - node-app
+  # 1.6
+  # push:
+  #   paths:
+  #     - node-app
+  pull-request:
+    types:
+      -opened
 jobs: 
   build:
     runs-on: ubuntu-latest
