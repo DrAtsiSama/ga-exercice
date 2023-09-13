@@ -5,9 +5,13 @@ on:
   # push:
   #   branche:
       # - dev
+  # 1.3
+  # push:
+  #   branches:
+  #    - '!staging'
   push:
     branches:
-     - '!staging'
+      - 'feat/**'
 jobs: 
   build:
     runs-on: ubuntu-latest
