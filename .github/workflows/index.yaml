@@ -13,9 +13,13 @@ on:
   # push:
   #   branches:
   #     - 'feat/**'
+  # 1.5
+  # push:
+  #   branches:
+  #     - '**.ts'
   push:
-    branches:
-      - '**.ts'
+    paths:
+      - node-app
 jobs: 
   build:
     runs-on: ubuntu-latest
