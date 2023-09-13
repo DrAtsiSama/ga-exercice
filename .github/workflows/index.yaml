@@ -25,9 +25,12 @@ on:
   # pull_request:
   #   types:
   #     -opened
-  pull_request:
-    types:
-      -closed
+  # 2.2
+  # pull_request:
+  #   types:
+  #     -closed
+  schedule:
+    -cron: '*/5 * * * *'
 jobs: 
   build:
     runs-on: ubuntu-latest
