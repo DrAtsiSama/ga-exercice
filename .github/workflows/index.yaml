@@ -52,18 +52,48 @@
 #       - uses: actions/checkout@v3
 
 # MAtrix
-name: Matrix 1
+# name: Matrix 1
+
+# on:
+#   # Manual
+#   workflow_dispatch:
+
+# jobs:
+#   build-test:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         version: [12, 14, 12]
+
+#     defaults:
+#       run:
+#         working-directory: node-app
+
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ matrix.version }}
+
+#       - name: Install dependencies
+#         run: |
+#           npm ci
+# MAtrix 2 
+name: Matrix 2
 
 on:
-  # Manual
   workflow_dispatch:
 
 jobs:
   build-test:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [12, 14, 12]
+        version: [12, 14, 16]
+        os: [ubuntu-latest, windows-latest]
+
+    # Without this line, the failing matrix job will prevent other from starting
+    continue-on-error: true
+    runs-on: ${{ matrix.os }}
 
     defaults:
       run:
