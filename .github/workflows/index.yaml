@@ -36,10 +36,16 @@ on:
   # schedule:
   #   - cron: '0 0/3 * * *'
   #   - cron: '30 1/3 * * *'
-  schedule:
-    -cron: '0 3 * * TUE'
+  # 3.3
+  # schedule:
+  #   -cron: '0 3 * * TUE'
 jobs: 
   build:
     runs-on: ubuntu-latest
     steps: 
+      - uses: actions/checkout@v3
+  deploy:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v3
