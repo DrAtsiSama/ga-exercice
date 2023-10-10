@@ -79,21 +79,44 @@
 #         run: |
 #           npm ci
 # MAtrix 2 
-name: Matrix 2
+# name: Matrix 2
+
+# on:
+#   workflow_dispatch:
+
+# jobs:
+#   build-test:
+#     strategy:
+#       matrix:
+#         version: [12, 14, 16]
+#         os: [ubuntu-latest, windows-latest]
+
+#     # Without this line, the failing matrix job will prevent other from starting
+#     continue-on-error: true
+#     runs-on: ${{ matrix.os }}
+
+#     defaults:
+#       run:
+#         working-directory: node-app
+
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ matrix.version }}
+
+#       - name: Install dependencies
+#         run: |
+#           npm ci
+# Self Hosted
+name: Self hosted runner
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   build-test:
-    strategy:
-      matrix:
-        version: [12, 14, 16]
-        os: [ubuntu-latest, windows-latest]
-
-    # Without this line, the failing matrix job will prevent other from starting
-    continue-on-error: true
-    runs-on: ${{ matrix.os }}
+    runs-on: self-hosted
 
     defaults:
       run:
@@ -101,10 +124,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.version }}
-
+      # No need to install nodejs as it is already installed locally
       - name: Install dependencies
         run: |
           npm ci
+      - name: Test
+        run: |
+          npm test
+      - name: Start the app
+        run: |
+          npm start
